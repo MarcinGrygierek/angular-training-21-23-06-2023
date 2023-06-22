@@ -1,0 +1,5 @@
+<ul>
+    <app-task *ngFor="let task of tasks" [task]="task" (onDelete)="deleteTask($event)" (onStatusChange)="changeStatus($event)"></app-task>
+</ul>
+
+<button (click)="addTask('Lorem ipsum')">Add task</button>

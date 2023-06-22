@@ -1,0 +1,11 @@
+<button (click)="toggle();">Show/hide</button>
+<div *ngIf="isVisible; then template1 else template2"></div>
+
+<ng-template #template1>
+    <app-counter></app-counter>
+</ng-template>
+
+<ng-template #template2>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="template1"></ng-container>

@@ -9,6 +9,9 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { TasksActionsComponent } from './tasks-actions/tasks-actions.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { PageContainerComponent } from './page-container/page-container.component';
+import { HomeComponent } from './home/home.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { AppWrapperComponent } from './app-wrapper/app-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { PageContainerComponent } from './page-container/page-container.componen
     TasksListComponent,
     TasksActionsComponent,
     TaskDetailsComponent,
-    PageContainerComponent
+    PageContainerComponent,
+    HomeComponent,
+    StatisticsComponent,
+    AppWrapperComponent
   ],
   imports: [
     BrowserModule,

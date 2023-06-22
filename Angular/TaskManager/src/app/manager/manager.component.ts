@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SingleTask, TaskStatus, TaskStatusChange } from '../types';
 
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.scss']
+  styleUrls: ['./manager.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManagerComponent {
   tasks: SingleTask[] = [];
@@ -13,16 +14,21 @@ export class ManagerComponent {
     const newTask: SingleTask = {
       title,
       status: TaskStatus.New,
+      hidden: false,
       id: Math.round(Math.random() * 100000)
     }
 
-    this.tasks.push(newTask);
+   this.tasks = [...this.tasks, newTask];
   }
 
   deleteTask(idToDelete: number) {
-    console.log('Deletein', idToDelete);
-    const indexToDelete = this.tasks.findIndex(task => task.id === idToDelete);
-    if(indexToDelete > -1) this.tasks.splice(indexToDelete, 1);
+    // const indexToDelete = this.tasks.findIndex(task => task.id === idToDelete);
+    // if(indexToDelete > -1) this.tasks.splice(indexToDelete, 1);
+
+    const taskToChange = this.tasks.find(task => task.id === idToDelete);
+    if(taskToChange) {
+      taskToChange.hidden = true;
+    }
   }
 
   changeStatus(payload: TaskStatusChange) {

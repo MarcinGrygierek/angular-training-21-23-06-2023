@@ -1,0 +1,5 @@
+<ul>
+    <ng-container *ngFor="let task of tasks">
+        <app-task *ngIf="!task.hidden" [task]="task" (onDelete)="deleteTask($event)" (onStatusChange)="changeStatus($event)"></app-task>
+    </ng-container>
+</ul>

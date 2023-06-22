@@ -1,5 +1,5 @@
 <li>
-    <p>{{ task.title }} ({{ task.status }}) <small>{{ task.id }}</small></p>
+    <app-task-details [task]="task"></app-task-details>
     <button [disabled]="isNew" (click)="changeToNew()">New</button>
     <button [disabled]="isInProgress" (click)="changeToInProgress()">In progress</button>
     <button [disabled]="isDone" (click)="changeToDone()">Done</button>

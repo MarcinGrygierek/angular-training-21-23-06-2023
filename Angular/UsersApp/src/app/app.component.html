@@ -1,0 +1,7 @@
+<app-user-details name="Marian"></app-user-details>
+<app-user-details name="Ania"></app-user-details>
+<app-user-details name="Tomek"></app-user-details>
+<app-user-details name="Lorem"></app-user-details>
+<app-user-details [name]="title"></app-user-details>
+
+<app-users-list [users]="users" [handleDelete]="deleteUser" (onDelete)="deleteUser($event)"></app-users-list>

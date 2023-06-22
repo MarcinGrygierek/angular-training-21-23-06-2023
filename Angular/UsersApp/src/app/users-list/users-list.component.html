@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let user of users; let i = index">
+        {{ user }}
+        <button (click)="handleDelete(i)">Delete</button>
+        <button (click)="handleClick(i)">Delete by event emitter</button>
+    </li>
+</ul>
+
+<app-user-details *ngFor="let user of users" [name]="user"></app-user-details>

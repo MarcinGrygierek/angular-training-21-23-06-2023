@@ -1,2 +1,4 @@
-<app-tasks-list [tasks]="tasks" (onDelete)="deleteTask($event)" (onStatusChange)="changeStatus($event)"></app-tasks-list>
-<app-tasks-actions (onAdd)="addTask($event)"></app-tasks-actions>
+<app-page-container title="Task manager">
+    <app-tasks-list [tasks]="tasks" (onDelete)="deleteTask($event)" (onStatusChange)="changeStatus($event)"></app-tasks-list>
+    <app-tasks-actions (onAdd)="addTask($event)"></app-tasks-actions>
+</app-page-container>

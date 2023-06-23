@@ -11,6 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class UsersStatsComponent implements OnInit {
   users!: Observable<User[]>;
+
+  obs = new Observable<number>((observer) => {
+    setTimeout(() => {
+      observer.next(100);
+    }, 5000)
+  })
+
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {

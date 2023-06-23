@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { filter, interval, map, scan, timer, of, from, take, distinctUntilChanged, forkJoin, debounceTime, combineLatest, takeUntil, startWith, tap, fromEvent } from 'rxjs';
+import { filter, interval, map, scan, timer, of, from, take, distinctUntilChanged, forkJoin, merge, concat, debounceTime, combineLatest, takeUntil, startWith, tap, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,18 +11,18 @@ export class AppComponent implements OnInit {
   button!: ElementRef;
 
  ngOnInit(): void {
-   interval(1000)
-    .pipe(
-      startWith(10),
-      tap(val => console.log(`Przed filter ${val}`)),
-      filter(val => val % 2 === 0),
-      tap(val => console.log(`Po filter ${val}`)),
-      take(5),
-      // takeUntil(timer(3000)),
-      map(val => val ** 2),
-      scan((acc, curr) => acc + curr)
-    )
-    .subscribe(val => console.log(val));
+  //  interval(1000)
+  //   .pipe(
+  //     startWith(10),
+  //     tap(val => console.log(`Przed filter ${val}`)),
+  //     filter(val => val % 2 === 0),
+  //     tap(val => console.log(`Po filter ${val}`)),
+  //     take(5),
+  //     // takeUntil(timer(3000)),
+  //     map(val => val ** 2),
+  //     scan((acc, curr) => acc + curr)
+  //   )
+  //   .subscribe(val => console.log(val));
 
     // niepoprawne
     // let sum = 0;
@@ -52,12 +52,25 @@ export class AppComponent implements OnInit {
     // )
     // .subscribe(console.log);
 
-    const timer1 = interval(500).pipe(take(5));
-    const timer2 = interval(600).pipe(take(5));
-    const timer3 = interval(1000).pipe(take(10));
+    // const timer1 = interval(500).pipe(take(5));
+    // const timer2 = interval(600).pipe(take(5));
+    // const timer3 = interval(1000).pipe(take(10));
 
     // combineLatest([timer1, timer2, timer3]).subscribe(console.log);
-    forkJoin([timer1, timer2, timer3]).subscribe(console.log);
+    // forkJoin([timer1, timer2, timer3]).subscribe(console.log);
+
+    const timer1 = interval(500).pipe(take(10));
+    const timer2 = interval(600).pipe(take(5));
+    const timer3 = interval(1000).pipe(take(3));
+
+
+    const timer4 = interval(100).pipe(take(10));
+    const timer5 = interval(200).pipe(take(8));
+
+    const concat1 = concat(timer1, timer2, timer3);
+    const concat2 = concat(timer4, timer5);
+
+    merge(concat1, concat2).subscribe(console.log);
 
  }
 }

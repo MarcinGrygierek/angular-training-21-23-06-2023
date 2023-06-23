@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { SingleTask, TaskStatusChange } from '../../types';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TasksService } from 'src/app/tasks.service';
+import { SingleTask } from 'src/app/types';
 
 @Component({
   selector: 'app-tasks-list',
@@ -8,21 +10,9 @@ import { SingleTask, TaskStatusChange } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksListComponent {
+  tasks!: Observable<SingleTask[]>;
 
-  @Input()
-  tasks: SingleTask[] = [];
-
-  @Output()
-  onDelete = new EventEmitter<number>();
-
-  @Output()
-  onStatusChange = new EventEmitter<TaskStatusChange>()
-
-  deleteTask(id: number) {
-    this.onDelete.emit(id);
-  }
-
-  changeStatus(payload: TaskStatusChange) {
-    this.onStatusChange.emit(payload)
+  constructor(private tasksService: TasksService) {
+    this.tasks = this.tasksService.tasks$;
   }
 }

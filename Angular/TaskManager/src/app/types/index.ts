@@ -15,3 +15,8 @@ export interface TaskStatusChange {
     id: number,
     newStatus: TaskStatus;
 }
+
+export interface TaskStats {
+    opened: number;
+    closed: number;
+}

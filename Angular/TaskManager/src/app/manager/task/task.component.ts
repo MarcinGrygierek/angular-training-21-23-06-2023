@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SingleTask, TaskStatus, TaskStatusChange } from '../../types';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { SingleTask, TaskStatus } from '../../types';
+import { TasksService } from 'src/app/tasks.service';
 
 @Component({
   selector: 'app-task',
@@ -11,11 +12,7 @@ export class TaskComponent {
   @Input()
   task!: SingleTask;
 
-  @Output()
-  onDelete = new EventEmitter<number>();
-
-  @Output()
-  onStatusChange = new EventEmitter<TaskStatusChange>()
+  constructor(private tasksService: TasksService) {}
 
   get isNew() {
     return this.task.status === TaskStatus.New;
@@ -30,19 +27,19 @@ export class TaskComponent {
   }
 
   handleDelete() {
-    this.onDelete.emit(this.task.id);
+    this.tasksService.deleteTask(this.task.id);
   }
 
   changeToNew() {
-    this.onStatusChange.emit({ id: this.task.id, newStatus: TaskStatus.New })
+    this.tasksService.changeStatus({ id: this.task.id, newStatus: TaskStatus.New })
   }
   
   changeToInProgress() {
-    this.onStatusChange.emit({ id: this.task.id, newStatus: TaskStatus.InProgress })
+    this.tasksService.changeStatus({ id: this.task.id, newStatus: TaskStatus.InProgress })
   }
   
   changeToDone() {
-    this.onStatusChange.emit({ id: this.task.id, newStatus: TaskStatus.Done })
+    this.tasksService.changeStatus({ id: this.task.id, newStatus: TaskStatus.Done })
   }
 
 }

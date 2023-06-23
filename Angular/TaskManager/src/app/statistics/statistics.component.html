@@ -1,4 +1,4 @@
 <app-page-container title="Statistics">
-    <p>Open tasks: 0</p>
-    <p>Closed tasks: 0</p>
+    <p>Open tasks: {{ (tasksStats | async)!.opened }}</p>
+    <p>Closed tasks: {{ (tasksStats | async)!.closed }}</p>
 </app-page-container>

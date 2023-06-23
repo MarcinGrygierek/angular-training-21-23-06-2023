@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageContainerComponent } from './page-container/page-container.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     PageContainerComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
-    PageContainerComponent
+    PageContainerComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

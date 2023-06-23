@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/tasks.service';
 
 @Component({
@@ -8,9 +9,21 @@ import { TasksService } from 'src/app/tasks.service';
 })
 export class TasksActionsComponent {
 
-  constructor(private tasksService: TasksService) {}
+  form = this.fb.group({
+    title: ['', [Validators.required, Validators.minLength(3)]]
+  })
 
-  addTask(title: string) {
-    this.tasksService.addTask(title);
+  constructor(
+    private tasksService: TasksService,
+    private fb: FormBuilder) {}
+
+  handleSubmit() {
+    const taskTitle = this.form.value.title;
+
+    if(!taskTitle) return;
+
+    this.tasksService.addTask(taskTitle);
+
+    this.form.reset();
   }
 }

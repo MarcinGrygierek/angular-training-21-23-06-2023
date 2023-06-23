@@ -1,0 +1,7 @@
+<form [formGroup]="form">
+  <input type="text" name="search" formControlName="search">
+</form>
+
+<ul>
+  <li *ngFor="let show of results | async">{{ show }}</li>
+</ul>

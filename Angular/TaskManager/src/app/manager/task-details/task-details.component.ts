@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SingleTask } from '../types';
+import { SingleTask } from '../../types';
 
 @Component({
   selector: 'app-task-details',

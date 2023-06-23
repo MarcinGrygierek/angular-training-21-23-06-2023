@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { SingleTask, TaskStatusChange } from '../types';
+import { SingleTask, TaskStatusChange } from '../../types';
 
 @Component({
   selector: 'app-tasks-list',
